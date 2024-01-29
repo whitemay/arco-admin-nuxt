@@ -24,11 +24,11 @@ async function login() {
     <pre>Last refreshed at: {{ lastRefreshedAt || 'no refresh happened' }}</pre>
     <pre>JWT token: {{ token || 'no token present, are you logged in?' }}</pre>
     <form @submit.prevent="login">
-      <input v-model="username" type="text" placeholder="Username">
-      <input v-model="password" type="password" placeholder="Password">
-      <button type="submit">
+      <a-input v-model="username" type="text" placeholder="Username" />
+      <a-input v-model="password" type="password" placeholder="Password" />
+      <a-button type="primary" html-type="submit">
         sign in
-      </button>
+      </a-button>
     </form>
   </div>
 </template>

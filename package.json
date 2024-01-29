@@ -27,6 +27,7 @@
     "@unocss/eslint-config": "^0.58.3",
     "@unocss/nuxt": "^0.58.3",
     "@vueuse/nuxt": "^10.7.2",
+    "arco-design-nuxt-module": "^0.0.18",
     "consola": "^3.2.3",
     "eslint": "npm:eslint-ts-patch@^8.56.0-0",
     "eslint-plugin-format": "^0.1.0",

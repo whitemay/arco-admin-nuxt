@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@unocss/nuxt',
     '@pinia/nuxt',
+    'arco-design-nuxt-module',
     '@nuxtjs/color-mode',
     '@sidebase/nuxt-auth',
     'nuxt-module-eslint-config',
