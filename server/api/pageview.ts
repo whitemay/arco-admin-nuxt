@@ -1,7 +1,8 @@
 const startAt = Date.now()
 let count = 0
 
-export default defineEventHandler(() => {
+export default defineEventHandler((event) => {
+  ensureAuth(event)
   return {
     pageview: count++,
     startAt,
