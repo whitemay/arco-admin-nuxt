@@ -1,5 +1,3 @@
-import { acceptHMRUpdate, defineStore } from 'pinia'
-
 export const useUserStore = defineStore('user', () => {
   /**
    * Current named of the user.

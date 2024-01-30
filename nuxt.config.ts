@@ -1,15 +1,26 @@
-import { appDescription } from './constants/index'
+import process from 'node:process'
+import { pwa } from './config/pwa'
+import { appDescription } from './config/const'
 
 export default defineNuxtConfig({
   modules: [
     '@vueuse/nuxt',
+    'nuxt-lodash',
     '@unocss/nuxt',
     '@pinia/nuxt',
+    'nuxt-icon',
     'arco-design-nuxt-module',
     '@nuxtjs/color-mode',
     '@sidebase/nuxt-auth',
     'nuxt-module-eslint-config',
   ],
+
+  components: {
+    dirs: ['components'],
+  },
+  imports: {
+    dirs: ['stores'],
+  },
 
   experimental: {
     // when using generate, payload js assets included in sw precache manifest
@@ -20,7 +31,7 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    jwt: { secret: 'dummy_secret' },
+    jwt: { secret: process.env.JWT_SECRET || 'dummy_secret' },
   },
 
   auth: {
@@ -88,7 +99,8 @@ export default defineNuxtConfig({
     },
   },
 
-  ssr: true,
+  pwa,
+  ssr: false,
 
   devtools: {
     enabled: true,

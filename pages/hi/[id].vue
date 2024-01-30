@@ -8,7 +8,7 @@ watchEffect(() => {
 })
 
 definePageMeta({
-  layout: 'home',
+  layout: 'default',
 })
 </script>
 

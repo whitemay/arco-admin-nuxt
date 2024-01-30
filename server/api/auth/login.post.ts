@@ -8,11 +8,11 @@ export default eventHandler(async (event) => {
   if (!result.success)
     throw createError({ statusCode: 403, statusMessage: 'Unauthorized, hint: try `hunter2` as password' })
 
-  const expiresIn = 60 * 60
+  const expiresIn = '1d'
   const { username } = result.data
   const user = {
     username,
-    picture: 'https://github.com/nuxt.png',
+    avatar: 'https://github.com/nuxt.png',
     name: `User ${username}`,
   }
 

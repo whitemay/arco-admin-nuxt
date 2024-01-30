@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 const { signIn, token, data, status, lastRefreshedAt, getSession, signUp, signOut } = useAuth()
+const appConfig = useAppConfig()
 
 const username = ref('jsmith')
 const password = ref('hunter2')
 
 definePageMeta({
+  layout: 'home',
   auth: {
     unauthenticatedOnly: true,
     navigateAuthenticatedTo: '/',
@@ -14,6 +16,8 @@ definePageMeta({
 async function login() {
   await signIn({ username: username.value, password: password.value }, { callbackUrl: '/' })
 }
+
+updateAppConfig({ title: 'Login' })
 </script>
 
 <template>

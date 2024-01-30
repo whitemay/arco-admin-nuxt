@@ -1,15 +1,20 @@
 <script setup lang="ts">
-import { appName } from '~/constants'
+import enUS from '@arco-design/web-vue/es/locale/lang/en-us'
+import zhCN from '@arco-design/web-vue/es/locale/lang/zh-cn'
+
+const appConfig = useAppConfig()
 
 useHead({
-  title: appName,
+  title: appConfig.title,
 })
 </script>
 
 <template>
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
+  <a-config-provider>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </a-config-provider>
 </template>
 
 <style>
