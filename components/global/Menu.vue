@@ -1,6 +1,5 @@
-import type { GlobalMenuItem } from '#build/components';
 <script setup lang="ts">
-import { AMenuItem } from '#components'
+import type { RouteRecordRaw } from '#vue-router'
 
 const collapsed = ref(false)
 const openKeys = ref<string[]>([])
@@ -8,13 +7,54 @@ const selectedKey = ref<string[]>([])
 const appStore = useAppStore()
 const topMenu = computed(() => appStore.topMenu)
 
+await appStore.fetchServerMenuConfig()
+const { menuTree } = useMenuTree()
+
+function findMenuOpenKeys(target: string) {
+  const result: string[] = []
+  let isFind = false
+  const backtrack = (item: RouteRecordRaw, keys: string[]) => {
+    if (item.name === target) {
+      isFind = true
+      result.push(...keys)
+      return
+    }
+    if (item.children?.length) {
+      item.children.forEach((el) => {
+        backtrack(el, [...keys, el.name as string])
+      })
+    }
+  }
+  menuTree.value.forEach((el: RouteRecordRaw) => {
+    if (isFind)
+      return // Performance optimization
+    backtrack(el, [el.name as string])
+  })
+  return result
+}
+
+const subscription = useRouteSubscribe((newRoute) => {
+  const { requiresAuth, activeMenu, hideInMenu } = newRoute.meta
+  if (requiresAuth && (!hideInMenu || activeMenu)) {
+    const menuOpenKeys = findMenuOpenKeys(
+      (activeMenu || newRoute.name) as string,
+    )
+
+    const keySet = new Set([...menuOpenKeys, ...openKeys.value])
+    openKeys.value = [...keySet]
+
+    selectedKey.value = [
+      activeMenu as string || menuOpenKeys[menuOpenKeys.length - 1],
+    ]
+  }
+}, true)
+
+onUnmounted(() => subscription.unsubscribe())
+
 function setCollapse(val: boolean) {
   if (appStore.device === 'desktop')
     appStore.updateSettings({ menuCollapse: val })
 }
-
-await appStore.fetchServerMenuConfig()
-const { menuTree } = useMenuTree()
 </script>
 
 <template>

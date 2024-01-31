@@ -1,4 +1,4 @@
-import type { RouteRecordNormalized } from 'vue-router'
+import type { RouteRecordNormalized } from '#vue-router'
 
 export interface AppState {
   theme: string

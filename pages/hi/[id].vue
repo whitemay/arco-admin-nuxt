@@ -3,12 +3,16 @@ const route = useRoute<'hi-id'>()
 const user = useUserStore()
 const name = route.params.id
 
+const tabStore = useTabBarStore()
+
 watchEffect(() => {
-  user.setNewName(route.params.id as string)
+  const name = route.params.id as string
+  user.setNewName(name)
+  tabStore.updateTitle(route.fullPath, `Hi, ${name}`)
 })
 
 definePageMeta({
-  layout: 'default',
+  locale: 'hello.title',
 })
 </script>
 

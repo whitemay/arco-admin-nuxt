@@ -57,7 +57,7 @@ const paddingStyle = computed(() => {
 
 .layout-navbar {
   height: @nav-size-height;
-  padding-left: 200px;
+  // padding-left: 200px;
 }
 
 .layout-sider {

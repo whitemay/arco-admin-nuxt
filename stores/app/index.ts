@@ -1,9 +1,9 @@
-import type { RouteRecordNormalized } from 'vue-router'
 import type { NotificationReturn } from '@arco-design/web-vue/es/notification/interface'
 
 import { Notification } from '@arco-design/web-vue'
 import defaultSettings from '../../config/settings.json'
 import type { AppState } from './types'
+import type { RouteRecordNormalized } from '#vue-router'
 
 export const useAppStore = defineStore('app', {
   state: (): AppState => ({ ...defaultSettings }),

@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  locale: 'root.title',
+  redirect: { path: '/hi/aston' },
+})
 const online = useOnline()
 </script>
 

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { RouteLocationNormalized } from 'vue-router'
+import type { RouteLocationNormalized } from '#vue-router'
 
 const appStore = useAppStore()
 const tabBarStore = useTabBarStore()
@@ -18,7 +18,8 @@ watch(
     affixRef.value.updatePosition()
   },
 )
-listenerRouteChange((route: RouteLocationNormalized) => {
+
+const listener = useRouteSubscribe((route: RouteLocationNormalized) => {
   if (
     !route.meta.noAffix
     && !tagList.value.some(tag => tag.fullPath === route.fullPath)
@@ -27,7 +28,8 @@ listenerRouteChange((route: RouteLocationNormalized) => {
 }, true)
 
 onUnmounted(() => {
-  removeRouteListener()
+  // removeRouteListener()
+  listener.unsubscribe()
 })
 </script>
 

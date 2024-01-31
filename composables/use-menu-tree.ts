@@ -1,4 +1,4 @@
-import type { RouteRecordNormalized, RouteRecordRaw } from 'vue-router'
+import type { RouteRecordNormalized, RouteRecordRaw } from '#vue-router'
 
 // import usePermission from '@/hooks/permission';
 // import appClientMenus from '@/router/app-menus';
