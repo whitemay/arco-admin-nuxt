@@ -1,4 +1,7 @@
 import process from 'node:process'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
 import { pwa } from './config/pwa'
 import { appDescription } from './config/const'
 
@@ -10,11 +13,35 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'nuxt-icon',
     'arco-design-nuxt-module',
+    // '@vrx-arco/nuxt',
     '@nuxtjs/color-mode',
     '@sidebase/nuxt-auth',
     'nuxt-module-eslint-config',
   ],
 
+  app: {
+    head: {
+      viewport: 'width=device-width,initial-scale=1',
+      link: [
+        { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/nuxt.svg' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+      ],
+      meta: [
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'description', content: appDescription },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+      ],
+    },
+  },
+  arco: {
+    importStyle: 'css',
+    // theme: '@arco-themes/vue-digitforce',
+  },
+  css: [
+    // '@unocss/reset/tailwind-compat.css', // 怀疑Arco做了，所以不再引入
+    '@arco-design/web-vue/dist/arco.min.css',
+  ],
   components: {
     dirs: ['components'],
   },
@@ -62,10 +89,6 @@ export default defineNuxtConfig({
     },
   },
 
-  css: [
-    '@unocss/reset/tailwind.css',
-  ],
-
   colorMode: {
     classSuffix: '',
   },
@@ -80,22 +103,6 @@ export default defineNuxtConfig({
       crawlLinks: false,
       routes: ['/'],
       ignore: ['/hi'],
-    },
-  },
-
-  app: {
-    head: {
-      viewport: 'width=device-width,initial-scale=1',
-      link: [
-        { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
-        { rel: 'icon', type: 'image/svg+xml', href: '/nuxt.svg' },
-        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
-      ],
-      meta: [
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: appDescription },
-        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
-      ],
     },
   },
 
@@ -116,6 +123,28 @@ export default defineNuxtConfig({
   },
 
   build: {
-    transpile: ['jsonwebtoken'],
+    transpile: ['jsonwebtoken', /vue-i18n/],
+  },
+
+  vite: {
+    css: {
+      preprocessorOptions: {
+        less: {
+          additionalData: '@import "./assets/style/global.less";',
+        },
+      },
+    },
+    resolve: {
+      alias: {
+        'vue-i18n': 'vue-i18n/dist/vue-i18n.runtime.esm-bundler.js',
+      },
+    },
+    plugins: [
+      VueI18nVitePlugin({
+        include: [
+          resolve(dirname(fileURLToPath(import.meta.url)), './locales/*.json'),
+        ],
+      }),
+    ],
   },
 })
