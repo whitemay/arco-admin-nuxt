@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { RouteRecordRaw } from '#vue-router'
+
 interface Props {
   items: RouteRecordRaw[]
 }

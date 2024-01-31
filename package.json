@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "jsonwebtoken": "^9.0.2",
-    "mitt": "^3.0.1",
+    "rxjs": "^7.8.1",
     "sort-json": "^2.0.1",
     "zod": "^3.22.4"
   },

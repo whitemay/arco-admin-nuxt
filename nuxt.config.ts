@@ -17,6 +17,8 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@sidebase/nuxt-auth',
     'nuxt-module-eslint-config',
+    // '@nuxtjs/eslint-module',
+    '@vite-pwa/nuxt',
   ],
 
   app: {
@@ -35,8 +37,8 @@ export default defineNuxtConfig({
     },
   },
   arco: {
-    importStyle: 'css',
-    // theme: '@arco-themes/vue-digitforce',
+    importStyle: 'css', // 目前没有考虑使用less变量，所以直接引入css
+    // theme: '@arco-themes/vue-digitforce', // 主题会自动引入整体CSS。如果不使用主题，就需要在CSS段中引入Arco的CSS
   },
   css: [
     // '@unocss/reset/tailwind-compat.css', // 怀疑Arco做了，所以不再引入

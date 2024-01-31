@@ -1,4 +1,5 @@
 {
+  "hello.title": "问候",
   "menu.arcoWebsite": "Arco Design",
   "menu.dashboard": "仪表盘",
   "menu.dashboard.workplace": "工作台",
@@ -72,5 +73,6 @@
   "workplace.recently.visited": "最近访问",
   "workplace.record.nodata": "暂无数据",
   "workplace.viewMore": "查看更多",
-  "workplace.welcome": "欢迎回来！"
+  "workplace.welcome": "欢迎回来！",
+  "ROOT.title": "主页面"
 }

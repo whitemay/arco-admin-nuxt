@@ -1,5 +1,5 @@
-import type { RouteLocationNormalized } from 'vue-router'
 import type { TabBarState, TagProps } from './types'
+import type { RouteLocationNormalized } from '#vue-router'
 import {
   DEFAULT_ROUTE,
   DEFAULT_ROUTE_NAME,
@@ -66,6 +66,11 @@ export const useTabBarStore = defineStore('tabBar', {
       this.tagList = [DEFAULT_ROUTE]
       this.cacheTabList.clear()
       this.cacheTabList.add(DEFAULT_ROUTE_NAME)
+    },
+    updateTitle(fullPath: string, title: string) {
+      const tag = this.tagList.find(el => el.fullPath === fullPath)
+      if (tag)
+        tag.title = title
     },
   },
 })

@@ -56,6 +56,9 @@ function toggleDrawerMenu() {}
 
 <template>
   <div class="navbar">
+    <div class="h-full w-200px overflow-hidden">
+      <Logos />
+    </div>
     <div class="left-side">
       <a-space>
         <icon-menu-fold
