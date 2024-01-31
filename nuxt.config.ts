@@ -3,7 +3,7 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
 import { pwa } from './config/pwa'
-import { appDescription } from './config/const'
+import { appDescription, appName } from './config/const'
 
 export default defineNuxtConfig({
   modules: [
@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     'nuxt-lodash',
     '@unocss/nuxt',
     '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
     'nuxt-icon',
     'arco-design-nuxt-module',
     // '@vrx-arco/nuxt',
@@ -19,11 +20,16 @@ export default defineNuxtConfig({
     'nuxt-module-eslint-config',
     // '@nuxtjs/eslint-module',
     '@vite-pwa/nuxt',
+    '@nuxtjs/html-validator',
   ],
 
   app: {
     head: {
+      htmlAttrs: {
+        lang: 'zh-CN',
+      },
       viewport: 'width=device-width,initial-scale=1',
+      title: appName,
       link: [
         { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
         { rel: 'icon', type: 'image/svg+xml', href: '/nuxt.svg' },
@@ -40,6 +46,9 @@ export default defineNuxtConfig({
     importStyle: 'css', // 目前没有考虑使用less变量，所以直接引入css
     // theme: '@arco-themes/vue-digitforce', // 主题会自动引入整体CSS。如果不使用主题，就需要在CSS段中引入Arco的CSS
   },
+  colorMode: {
+    classSuffix: '',
+  },
   css: [
     // '@unocss/reset/tailwind-compat.css', // 怀疑Arco做了，所以不再引入
     '@arco-design/web-vue/dist/arco.min.css',
@@ -49,6 +58,10 @@ export default defineNuxtConfig({
   },
   imports: {
     dirs: ['stores'],
+  },
+  unocss: {
+    components: false,
+    // injectPosition: 'first',
   },
 
   experimental: {
@@ -91,10 +104,6 @@ export default defineNuxtConfig({
     },
   },
 
-  colorMode: {
-    classSuffix: '',
-  },
-
   nitro: {
     esbuild: {
       options: {
@@ -113,6 +122,10 @@ export default defineNuxtConfig({
 
   devtools: {
     enabled: true,
+
+    timeline: {
+      enabled: true,
+    },
   },
 
   features: {

@@ -25,6 +25,8 @@
     "@iconify-json/twemoji": "^1.1.15",
     "@intlify/unplugin-vue-i18n": "^2.0.0",
     "@nuxtjs/color-mode": "^3.3.2",
+    "@nuxtjs/html-validator": "latest",
+    "@pinia-plugin-persistedstate/nuxt": "latest",
     "@pinia/nuxt": "^0.5.1",
     "@sidebase/nuxt-auth": "^0.6.7",
     "@types/jsonwebtoken": "^9.0.5",
