@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     // '@nuxtjs/eslint-module',
     '@vite-pwa/nuxt',
     '@nuxtjs/html-validator',
+    'nuxt-particles',
   ],
 
   app: {

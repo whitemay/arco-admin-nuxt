@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { Message } from '@arco-design/web-vue'
+// import { Message } from '@arco-design/web-vue'
 
 const appStore = useAppStore()
 const { signOut, data } = useAuth()
 const { isFullscreen, toggle: toggleFullScreen } = useFullscreen()
 const avatar = computed(() => {
-  return data.value.avatar
+  return data.value?.avatar || ''
 })
 const theme = computed(() => {
   return appStore.theme
@@ -40,8 +40,8 @@ function setPopoverVisible() {
   })
   refBtn.value.dispatchEvent(event)
 }
-function handleLogout() {
-  logout()
+async function handleLogout() {
+  await signOut({ callbackUrl: '/login', external: false })
 }
 function setDropDownVisible() {
   const event = new MouseEvent('click', {

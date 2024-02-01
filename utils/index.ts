@@ -1,0 +1,1 @@
+export { useColors } from './colors'
