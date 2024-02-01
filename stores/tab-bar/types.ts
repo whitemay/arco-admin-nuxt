@@ -1,3 +1,4 @@
+// 构造TabsBar所需要的类型定义
 export interface TagProps {
   title: string
   name: string

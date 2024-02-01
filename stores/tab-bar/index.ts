@@ -17,6 +17,7 @@ function formatTag(route: RouteLocationNormalized): TagProps {
   }
 }
 
+// 能否出现在tabBar上，由BAN_LIST控制
 const BAN_LIST = [REDIRECT_ROUTE_NAME]
 
 export const useTabBarStore = defineStore('tabBar', {

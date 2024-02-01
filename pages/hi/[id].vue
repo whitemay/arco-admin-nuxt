@@ -12,7 +12,9 @@ watchEffect(() => {
 })
 
 definePageMeta({
+  icon: 'ant-design:user-outlined',
   locale: 'hello.title',
+  hidden: false,
 })
 </script>
 

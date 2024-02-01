@@ -1,7 +1,10 @@
 declare module '#app' {
   interface PageMeta {
-    locale?: string
+    hidden?: boolean
+    icon?: string
     ignoreCache?: boolean
+    locale?: string
+    order?: number
   }
 }
 
