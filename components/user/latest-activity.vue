@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const [loading, { setFalse }] = useBoolean(true)
-const activityList = ref<LatestActivity[]>(Array.from({ length: 7 }).fill({}))
+const activityList = ref<LatestActivity[]>([])
 async function fetchData() {
   try {
     const { data } = await queryLatestActivity()

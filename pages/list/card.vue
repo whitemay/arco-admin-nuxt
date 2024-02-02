@@ -16,18 +16,18 @@ definePageMeta({
             <a-col :span="24">
               <a-tabs :default-active-tab="1" type="rounded">
                 <a-tab-pane key="1" :title="$t('cardList.tab.title.all')">
-                  <QualityInspection />
-                  <CardService />
-                  <RulesPreset />
+                  <ListQualityInspection />
+                  <ListService />
+                  <ListRulesPreset />
                 </a-tab-pane>
                 <a-tab-pane key="2" :title="$t('cardList.tab.title.content')">
-                  <QualityInspection />
+                  <ListQualityInspection />
                 </a-tab-pane>
                 <a-tab-pane key="3" :title="$t('cardList.tab.title.service')">
-                  <TheService />
+                  <ListService />
                 </a-tab-pane>
                 <a-tab-pane key="4" :title="$t('cardList.tab.title.preset')">
-                  <RulesPreset />
+                  <ListRulesPreset />
                 </a-tab-pane>
               </a-tabs>
             </a-col>

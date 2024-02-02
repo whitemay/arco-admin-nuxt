@@ -5,7 +5,7 @@ interface Props {
   items: RouteRecordRaw[]
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), { items: () => [] })
 </script>
 
 <template>

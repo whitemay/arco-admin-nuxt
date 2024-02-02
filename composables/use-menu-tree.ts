@@ -35,7 +35,6 @@ export function useMenuTree() {
       meta: route.meta,
       children: route.children,
     } as RouteRecordNormalized))
-  console.log(JSON.stringify(toTree(appClientMenus)))
 
   // const permission = usePermission()
   const appStore = useAppStore()

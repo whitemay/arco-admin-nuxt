@@ -25,14 +25,14 @@ definePageMeta({
         </a-grid>
       </div>
       <div class="content-right">
-        <!-- <a-grid :cols="24" :row-gap="16">
+        <a-grid :cols="24" :row-gap="16">
           <a-grid-item :span="24">
             <UserTeam />
           </a-grid-item>
           <a-grid-item class="panel" :span="24">
             <UserLatestNotification />
           </a-grid-item>
-        </a-grid> -->
+        </a-grid>
       </div>
     </div>
   </div>

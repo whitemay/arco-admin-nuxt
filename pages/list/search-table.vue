@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+import type { SelectOptionData } from '@arco-design/web-vue/es/select/interface'
+import type { TableColumnData } from '@arco-design/web-vue/es/table/interface'
+import Sortable from 'sortablejs'
+
 definePageMeta({
   locale: 'menu.list.searchTable',
   requiresAuth: true,
@@ -18,7 +23,7 @@ function generateFormModel() {
     status: '',
   }
 }
-const { loading, setLoading } = useLoading(true)
+const [loading, { toggle: setLoading }] = useBoolean(true)
 const { t } = useI18n()
 const renderData = ref<PolicyRecord[]>([])
 const formModel = ref(generateFormModel())
@@ -27,7 +32,7 @@ const showColumns = ref<Column[]>([])
 
 const size = ref<SizeProps>('medium')
 
-const basePagination: Pagination = {
+const basePagination: App.Pagination = {
   current: 1,
   pageSize: 20,
 }
@@ -175,7 +180,7 @@ function handleChange(checked: boolean | (string | boolean | number)[], column: 
 }
 
 function exchangeArray<T extends Array<any>>(array: T, beforeIdx: number, newIdx: number, isDeep = false): T {
-  const newArray = isDeep ? cloneDeep(array) : array
+  const newArray = isDeep ? useCloneDeep(array) : array
   if (beforeIdx > -1 && newIdx > -1) {
     // 先替换后面的，然后拿到替换的结果替换前面的
     newArray.splice(
@@ -464,3 +469,33 @@ watch(
     </a-card>
   </div>
 </template>
+
+<style scoped lang="less">
+  .container {
+  padding: 0 20px 20px 20px;
+}
+:deep(.arco-table-th) {
+  &:last-child {
+    .arco-table-th-item-title {
+      margin-left: 16px;
+    }
+  }
+}
+.action-icon {
+  margin-left: 12px;
+  cursor: pointer;
+}
+.active {
+  color: #0960bd;
+  background-color: #e3f4fc;
+}
+.setting {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  .title {
+    margin-left: 12px;
+    cursor: pointer;
+  }
+}
+</style>

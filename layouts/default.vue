@@ -24,7 +24,7 @@ const paddingStyle = computed(() => {
       <GlobalNavBar />
     </a-layout-header>
 
-    <a-layout>
+    <a-layout class="overflow-y-auto">
       <a-layout-sider class="layout-sider">
         <div class="menu-wrapper">
           <GlobalMenu />
@@ -35,7 +35,7 @@ const paddingStyle = computed(() => {
         <a-layout-header v-if="appStore.tabBar">
           <GlobalTabBar />
         </a-layout-header>
-        <a-layout-content>
+        <a-layout-content class="overflow-y-auto">
           <main class="px-10 py-20 text-center">
             <slot />
           </main>
