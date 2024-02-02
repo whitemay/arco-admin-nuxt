@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { Message } from '@arco-design/web-vue'
+// import { Message } from '@arco-design/web-vue'
 
 const appStore = useAppStore()
 const { signOut, data } = useAuth()
 const { isFullscreen, toggle: toggleFullScreen } = useFullscreen()
 const avatar = computed(() => {
-  return data.value.avatar
+  return data.value?.avatar || ''
 })
 const theme = computed(() => {
   return appStore.theme
@@ -40,8 +40,8 @@ function setPopoverVisible() {
   })
   refBtn.value.dispatchEvent(event)
 }
-function handleLogout() {
-  logout()
+async function handleLogout() {
+  await signOut({ callbackUrl: '/login', external: false })
 }
 function setDropDownVisible() {
   const event = new MouseEvent('click', {
@@ -150,15 +150,7 @@ function toggleDrawerMenu() {}
           </a-avatar>
           <template #content>
             <a-doption>
-              <a-space @click="switchRoles">
-                <icon-tag />
-                <span>
-                  切换角色
-                </span>
-              </a-space>
-            </a-doption>
-            <a-doption>
-              <a-space @click="$router.push({ name: 'Info' })">
+              <a-space @click="navigateTo({ name: 'user-info' })">
                 <icon-user />
                 <span>
                   用户中心
@@ -166,7 +158,7 @@ function toggleDrawerMenu() {}
               </a-space>
             </a-doption>
             <a-doption>
-              <a-space @click="$router.push({ name: 'Setting' })">
+              <a-space @click="navigateTo({ name: 'user-setting' })">
                 <icon-settings />
                 <span>
                   用户设置

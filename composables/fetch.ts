@@ -1,7 +1,8 @@
-export async function appFetch<T = any>(url: string, options: any = {}) {
+export function appFetch<T = any>(url: string, options: any = {}): Promise<App.ServerResult<T>> {
   const nuxtApp = useNuxtApp() as any
   const { signOut } = useAuth()
-  return await $fetch<T>(url, {
+
+  return $fetch<App.ServerResult<T>>(url, {
     ...options,
     onResponse({ response }: any) {
       const { _data, ok } = response

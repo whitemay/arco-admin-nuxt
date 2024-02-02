@@ -5,17 +5,17 @@ interface Props {
   items: RouteRecordRaw[]
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), { items: () => [] })
 </script>
 
 <template>
   <template v-for="item in props.items">
-    <a-sub-menu v-if="item.children && item.children.length !== 0" :key="item.name">
+    <a-sub-menu v-if="item.children && item.children.length !== 0" :key="(item.name as string)">
       <template v-if="item.meta?.icon" #icon>
         <icon :name="item.meta.icon" />
       </template>
       <template #title>
-        {{ item.meta?.title || '' }}
+        {{ $t(item.meta?.locale || '') }}
       </template>
       <GlobalMenuItems :items="item.children" />
     </a-sub-menu>
@@ -23,7 +23,7 @@ const props = defineProps<Props>()
       <template v-if="item.meta?.icon" #icon>
         <icon :name="item.meta.icon" />
       </template>
-      {{ item.meta?.title || '' }}
+      {{ $t(item.meta?.locale || '') }}
     </a-menu-item>
   </template>
 </template>

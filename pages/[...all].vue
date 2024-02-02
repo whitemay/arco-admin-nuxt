@@ -1,5 +1,9 @@
 <script setup lang="ts">
 const router = useRouter()
+
+definePageMeta({
+  layout: 'home', // 404页面不需要布局
+})
 </script>
 
 <template>

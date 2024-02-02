@@ -1,10 +1,9 @@
 <script setup lang="ts">
 const name = ref('')
 
-const router = useRouter()
 function go() {
   if (name.value)
-    router.push(`/hi/${encodeURIComponent(name.value)}`)
+    navigateTo(`/hi/${encodeURIComponent(name.value)}`)
 }
 </script>
 

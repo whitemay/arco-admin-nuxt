@@ -17,6 +17,7 @@ function formatTag(route: RouteLocationNormalized): TagProps {
   }
 }
 
+// 能否出现在tabBar上，由BAN_LIST控制
 const BAN_LIST = [REDIRECT_ROUTE_NAME]
 
 export const useTabBarStore = defineStore('tabBar', {
@@ -36,6 +37,7 @@ export const useTabBarStore = defineStore('tabBar', {
 
   actions: {
     updateTabList(route: RouteLocationNormalized) {
+      console.log(route.name)
       if (BAN_LIST.includes(route.name as string))
         return
       this.tagList.push(formatTag(route))

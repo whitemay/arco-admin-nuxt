@@ -1,5 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
+  hidden: true,
   locale: 'root.title',
   redirect: { path: '/hi/aston' },
 })
