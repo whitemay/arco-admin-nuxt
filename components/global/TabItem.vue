@@ -1,20 +1,14 @@
 <script lang="ts" setup>
-import type { PropType } from 'vue'
 import type { TagProps } from '@/stores/tab-bar/types'
 import { DEFAULT_ROUTE_NAME, REDIRECT_ROUTE_NAME } from '@/config/router'
+import type { RouteLocationRaw } from '#vue-router'
 
-const props = defineProps({
-  itemData: {
-    type: Object as PropType<TagProps>,
-    default() {
-      return []
-    },
-  },
-  index: {
-    type: Number,
-    default: 0,
-  },
-})
+interface Props {
+  itemData: TagProps
+  index: number
+}
+
+const props = defineProps<Props>()
 
 enum Eaction {
   reload = 'reload',
@@ -25,12 +19,11 @@ enum Eaction {
   all = 'all',
 }
 
-const router = useRouter()
 const route = useRoute()
 const tabBarStore = useTabBarStore()
 
 function goto(tag: TagProps) {
-  router.push({ ...tag })
+  navigateTo(tag.fullPath)
 }
 const tagList = computed(() => {
   return tabBarStore.getTabList
@@ -56,7 +49,7 @@ function tagClose(tag: TagProps, idx: number) {
   tabBarStore.deleteTag(idx, tag)
   if (props.itemData.fullPath === route.fullPath) {
     const latest = tagList.value[idx - 1] // 获取队列的前一个tab
-    router.push({ name: latest.name })
+    navigateTo(latest.fullPath, { replace: true })
   }
 }
 
@@ -75,7 +68,7 @@ async function actionSelect(value: any) {
 
     tabBarStore.freshTabList(copyTagList)
     if (currentRouteIdx < index)
-      router.push({ name: itemData.name })
+      navigateTo(itemData.fullPath)
   }
   else if (value === Eaction.right) {
     const currentRouteIdx = findCurrentRouteIndex()
@@ -83,19 +76,19 @@ async function actionSelect(value: any) {
 
     tabBarStore.freshTabList(copyTagList)
     if (currentRouteIdx > index)
-      router.push({ name: itemData.name })
+      navigateTo(itemData.fullPath)
   }
   else if (value === Eaction.others) {
     const filterList = tagList.value.filter((el, idx) => {
       return idx === 0 || idx === props.index
     })
     tabBarStore.freshTabList(filterList)
-    router.push({ name: itemData.name })
+    navigateTo(itemData.fullPath)
   }
   else if (value === Eaction.reload) {
     tabBarStore.deleteCache(itemData)
-    await router.push({
-      name: REDIRECT_ROUTE_NAME,
+    await navigateTo({
+      path: REDIRECT_ROUTE_NAME,
       params: {
         path: route.fullPath,
       },
@@ -104,7 +97,7 @@ async function actionSelect(value: any) {
   }
   else {
     tabBarStore.resetTabList()
-    router.push({ name: DEFAULT_ROUTE_NAME })
+    navigateTo({ name: DEFAULT_ROUTE_NAME })
   }
 }
 </script>

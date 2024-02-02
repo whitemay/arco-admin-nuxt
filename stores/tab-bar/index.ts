@@ -37,6 +37,7 @@ export const useTabBarStore = defineStore('tabBar', {
 
   actions: {
     updateTabList(route: RouteLocationNormalized) {
+      console.log(route.name)
       if (BAN_LIST.includes(route.name as string))
         return
       this.tagList.push(formatTag(route))

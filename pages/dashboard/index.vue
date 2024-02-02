@@ -2,8 +2,9 @@
 definePageMeta({
   icon: 'ant-design:dashboard-outlined',
   locale: 'menu.dashboard',
-  order: 1,
+  order: 0,
   redirect: '/dashboard/workplace',
+  requiresAuth: true,
 })
 </script>
 

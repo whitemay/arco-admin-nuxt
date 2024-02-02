@@ -150,15 +150,7 @@ function toggleDrawerMenu() {}
           </a-avatar>
           <template #content>
             <a-doption>
-              <a-space @click="switchRoles">
-                <icon-tag />
-                <span>
-                  切换角色
-                </span>
-              </a-space>
-            </a-doption>
-            <a-doption>
-              <a-space @click="$router.push({ name: 'Info' })">
+              <a-space @click="navigateTo({ name: 'user-info' })">
                 <icon-user />
                 <span>
                   用户中心
@@ -166,7 +158,7 @@ function toggleDrawerMenu() {}
               </a-space>
             </a-doption>
             <a-doption>
-              <a-space @click="$router.push({ name: 'Setting' })">
+              <a-space @click="navigateTo({ name: 'user-setting' })">
                 <icon-settings />
                 <span>
                   用户设置

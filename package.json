@@ -16,6 +16,7 @@
     "jsonwebtoken": "^9.0.2",
     "rxjs": "^7.8.1",
     "sort-json": "^2.0.1",
+    "v3hooks": "^1.5.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {

@@ -59,6 +59,10 @@ export default defineNuxtConfig({
   },
   imports: {
     dirs: ['stores'],
+    presets: [{
+      from: 'v3hooks',
+      imports: ['useBoolean'],
+    }],
   },
   unocss: {
     components: false,
@@ -146,7 +150,7 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         less: {
-          additionalData: '@import "./assets/style/global.less";',
+          additionalData: '@import "./assets/style/global.less"; @import "./assets/style/breakpoint.less"; ',
         },
       },
     },

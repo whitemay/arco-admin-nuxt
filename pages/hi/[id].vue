@@ -14,8 +14,12 @@ watchEffect(() => {
 definePageMeta({
   icon: 'ant-design:user-outlined',
   locale: 'hello.title',
-  hidden: false,
+  hidden: true,
 })
+function tryRoute() {
+  console.log('here')
+  navigateTo({ name: 'dashboard-workplace' })
+}
 </script>
 
 <template>
@@ -46,10 +50,15 @@ definePageMeta({
     <div>
       <NuxtLink
         class="m-3 text-sm btn"
-        to="/"
+        :to="{
+          name: 'dashboard-workplace',
+        }"
       >
         Back
       </NuxtLink>
+      <button class="m-3 text-sm btn" @click="tryRoute">
+        Go to Dashboard
+      </button>
     </div>
   </div>
 </template>
