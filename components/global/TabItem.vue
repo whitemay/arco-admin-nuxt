@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import type { TagProps } from '@/stores/tab-bar/types'
 import { DEFAULT_ROUTE_NAME, REDIRECT_ROUTE_NAME } from '@/config/router'
-import type { RouteLocationRaw } from '#vue-router'
 
 interface Props {
   itemData: TagProps
   index: number
+  currentPath: string
 }
 
 const props = defineProps<Props>()
@@ -19,7 +19,7 @@ enum Eaction {
   all = 'all',
 }
 
-const route = useRoute()
+// const route = useRoute()
 const tabBarStore = useTabBarStore()
 
 function goto(tag: TagProps) {
@@ -30,7 +30,7 @@ const tagList = computed(() => {
 })
 
 const disabledReload = computed(() => {
-  return props.itemData.fullPath !== route.fullPath
+  return props.itemData.fullPath !== props.currentPath
 })
 
 const disabledCurrent = computed(() => {
@@ -47,15 +47,17 @@ const disabledRight = computed(() => {
 
 function tagClose(tag: TagProps, idx: number) {
   tabBarStore.deleteTag(idx, tag)
-  if (props.itemData.fullPath === route.fullPath) {
+  /* if (props.itemData.fullPath === props.currentPath) {
     const latest = tagList.value[idx - 1] // 获取队列的前一个tab
     navigateTo(latest.fullPath, { replace: true })
-  }
+  } */
+  const latest = tagList.value[idx - 1] // 获取队列的前一个tab
+  navigateTo(latest.fullPath, { replace: true })
 }
 
-function findCurrentRouteIndex() {
-  return tagList.value.findIndex(el => el.fullPath === route.fullPath)
-}
+/* function findCurrentRouteIndex() {
+  return tagList.value.findIndex(el => el.fullPath === props.currentPath)
+} */
 async function actionSelect(value: any) {
   const { itemData, index } = props
   const copyTagList = [...tagList.value]
@@ -63,7 +65,7 @@ async function actionSelect(value: any) {
     tagClose(itemData, index)
   }
   else if (value === Eaction.left) {
-    const currentRouteIdx = findCurrentRouteIndex()
+    const currentRouteIdx = props.index
     copyTagList.splice(1, props.index - 1)
 
     tabBarStore.freshTabList(copyTagList)
@@ -71,7 +73,7 @@ async function actionSelect(value: any) {
       navigateTo(itemData.fullPath)
   }
   else if (value === Eaction.right) {
-    const currentRouteIdx = findCurrentRouteIndex()
+    const currentRouteIdx = props.index
     copyTagList.splice(props.index + 1)
 
     tabBarStore.freshTabList(copyTagList)
@@ -89,8 +91,8 @@ async function actionSelect(value: any) {
     tabBarStore.deleteCache(itemData)
     await navigateTo({
       path: REDIRECT_ROUTE_NAME,
-      params: {
-        path: route.fullPath,
+      query: {
+        path: props.currentPath,
       },
     })
     tabBarStore.addCache(itemData.name)
@@ -110,11 +112,11 @@ async function actionSelect(value: any) {
   >
     <span
       class="arco-tag arco-tag-size-medium arco-tag-checked"
-      :class="{ 'link-activated': itemData.fullPath === $route.fullPath }"
+      :class="{ 'link-activated': itemData.fullPath === props.currentPath }"
       @click="goto(itemData)"
     >
       <span class="tag-link">
-        {{ $t(itemData.title) }}
+        {{ itemData.tabTitle || $t(itemData.title) }}
       </span>
       <span
         class="arco-icon-hover arco-tag-icon-hover arco-icon-hover-size-medium arco-tag-close-btn"

@@ -1,5 +1,6 @@
 {
   "ROOT.title": "主页面",
+  "redirect.title": "跳转中...",
 
   "basicProfile.cancel": "取消流程",
   "basicProfile.cell.auditing": "审核中",

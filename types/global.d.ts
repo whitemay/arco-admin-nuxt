@@ -1,6 +1,6 @@
 import type { CallbackDataParams } from 'echarts/types/dist/shared'
 
-declare namespace App {
+declare global {
   export interface ServerResult<T = any> {
     data: T
     status: string
@@ -31,5 +31,12 @@ declare namespace App {
     axisValue: string
     axisValueLabel: string
   }
+  export interface AnyObject {
+    [key: string]: unknown
+  }
 
 }
+
+// export = Pro
+// export as namespace Pros
+export {}

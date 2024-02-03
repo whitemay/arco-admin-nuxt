@@ -5,7 +5,7 @@
   <div>
     <a-row :gutter="16">
       <a-col :span="6">
-        <ChainItem
+        <VisualChainItem2
           :title="$t('multiDAnalysis.card.title.retentionTrends')"
           quota="retentionTrends"
           chart-type="line"
@@ -19,14 +19,14 @@
         />
       </a-col>
       <a-col :span="6">
-        <ChainItem
+        <VisualChainItem2
           :title="$t('multiDAnalysis.card.title.contentConsumptionTrends')"
           quota="contentConsumptionTrends"
           chart-type="line"
         />
       </a-col>
       <a-col :span="6">
-        <ChainItem
+        <VisualChainItem2
           :title="$t('multiDAnalysis.card.title.contentConsumption')"
           quota="contentConsumption"
           chart-type="bar"

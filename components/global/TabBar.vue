@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { RouteLocationNormalized } from '#vue-router'
 
+const route = useRoute()
 const appStore = useAppStore()
 const tabBarStore = useTabBarStore()
 
@@ -44,6 +45,7 @@ onUnmounted(() => {
               :key="tag.fullPath"
               :index="index"
               :item-data="tag"
+              :current-path="route.fullPath"
             />
           </div>
         </div>

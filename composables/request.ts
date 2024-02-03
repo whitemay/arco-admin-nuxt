@@ -1,5 +1,5 @@
 export function useRequest<T>(
-  api: () => Promise<App.ServerResult<T>>,
+  api: () => Promise<ServerResult<T>>,
   defaultValue = [] as unknown as T,
   isLoading = true,
 ) {

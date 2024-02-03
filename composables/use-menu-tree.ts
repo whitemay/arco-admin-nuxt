@@ -5,7 +5,7 @@ function toTree(array: any[]): any[] {
   useUniqBy(array, item => item.name)
     .sort((a, b) => a.name < b.name ? 1 : -1)
     .forEach((route) => {
-      console.log(route.name)
+      console.log(route.name, route.meta.locale)
       route.children = dest.filter(item => item.path.startsWith(route.path))
         .sort((a, b) => (a.meta.order || 0) - (b.meta.order || 0))
       dest = [route, ...dest.slice(route.children.length)]

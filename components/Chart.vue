@@ -1,28 +1,45 @@
 <script lang="ts" setup>
-import VCharts from 'vue-echarts'
+import VCharts, { THEME_KEY } from 'vue-echarts'
+import { BarChart, LineChart, PieChart, RadarChart } from 'echarts/charts'
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import {
+  GraphicComponent,
+  GridComponent,
+  LegendComponent,
+  TitleComponent,
+  TooltipComponent,
+} from 'echarts/components'
 
 // import { useAppStore } from '@/store';
+interface Props {
+  options?: object
+  autoResize?: boolean
+  width?: string
+  height?: string
+}
 
-defineProps({
-  options: {
-    type: Object,
-    default() {
-      return {}
-    },
-  },
-  autoResize: {
-    type: Boolean,
-    default: true,
-  },
-  width: {
-    type: String,
-    default: '100%',
-  },
-  height: {
-    type: String,
-    default: '100%',
-  },
+const props = withDefaults(defineProps<Props>(), {
+  options: () => ({}),
+  autoResize: true,
+  width: '100%',
+  height: '100%',
 })
+
+use([
+  BarChart,
+  CanvasRenderer,
+  GraphicComponent,
+  GridComponent,
+  LegendComponent,
+  LineChart,
+  PieChart,
+  RadarChart,
+  TitleComponent,
+  TooltipComponent,
+])
+
+// provide(THEME_KEY, 'dark')
 // const appStore = useAppStore();
 // const theme = computed(() => {
 //   if (appStore.theme === 'dark') return 'dark';
@@ -30,7 +47,8 @@ defineProps({
 // });
 const renderChart = ref(false)
 // wait container expand
-nextTick(() => {
+onMounted(async () => {
+  await nextTick()
   renderChart.value = true
 })
 </script>
@@ -38,9 +56,9 @@ nextTick(() => {
 <template>
   <VCharts
     v-if="renderChart"
-    :option="options"
-    :autoresize="autoResize"
-    :style="{ width, height }"
+    :option="props.options"
+    :autoresize="props.autoResize"
+    :style="{ width: props.width, height: props.height }"
   />
 </template>
 

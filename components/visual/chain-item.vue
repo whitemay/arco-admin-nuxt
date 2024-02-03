@@ -1,25 +1,20 @@
 <script lang="ts" setup>
-const props = defineProps({
-  title: {
-    type: String,
-    default: '',
-  },
-  quota: {
-    type: String,
-    default: '',
-  },
-  chartType: {
-    type: String,
-    default: '',
-  },
-  cardStyle: {
-    type: Object as PropType<CSSProperties>,
-    default: () => {
-      return {}
-    },
-  },
+import type { EChartsOption } from 'echarts'
+import type { CSSProperties } from 'nuxt/dist/app/compat/vue-demi'
+
+const props = withDefaults(defineProps<Props>(), {
+  title: '',
+  quota: '',
+  chartType: '',
+  cardStyle: () => ({}),
 })
 
+interface Props {
+  title: string
+  quota: string
+  chartType: string
+  cardStyle: CSSProperties
+}
 function barChartOptionsFactory() {
   const data = ref<any>([])
   const { chartOption } = useChartOption(() => {
@@ -41,7 +36,7 @@ function barChartOptionsFactory() {
         show: true,
         trigger: 'axis',
       },
-      series: {
+      series: [{
         name: 'total',
         data,
         type: 'bar',
@@ -49,8 +44,8 @@ function barChartOptionsFactory() {
         itemStyle: {
           borderRadius: 2,
         },
-      },
-    }
+      }],
+    } as EChartsOption
   })
   return {
     data,

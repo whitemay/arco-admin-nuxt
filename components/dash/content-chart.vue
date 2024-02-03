@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import { graphic } from 'echarts'
-import type { ToolTipFormatterParams } from '@/types/echarts'
 
-function graphicFactory(side: App.AnyObject) {
+function graphicFactory(side: AnyObject) {
   return {
     type: 'text',
     bottom: '8',

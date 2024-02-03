@@ -27,17 +27,6 @@ export function queryPolicyList(params: PolicyParams) {
   })
 }
 
-export interface ServiceRecord {
-  id: number
-  title: string
-  description: string
-  name?: string
-  actionType?: string
-  icon?: string
-  data?: DescData[]
-  enable?: boolean
-  expires?: boolean
-}
 export function queryInspectionList() {
   return appFetch('/api/list/quality-inspection')
 }
