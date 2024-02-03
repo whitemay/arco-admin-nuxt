@@ -11,7 +11,7 @@ const online = useOnline()
 
 <template>
   <div>
-    <Logos mb-6 />
+    <GlobalLogos mb-6 />
     <Suspense>
       <ClientOnly>
         <PageView v-if="online" />

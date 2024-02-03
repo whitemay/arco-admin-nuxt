@@ -39,7 +39,7 @@ const paddingStyle = computed(() => {
           <slot />
         </a-layout-content>
         <a-layout-footer>
-          <Footer />
+          <GlobalFooter />
         </a-layout-footer>
       </a-layout>
       <!-- 主体部分结束 -->
