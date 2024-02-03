@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import PublicOpinion from './components/public-opinion.vue'
+import ContentPeriodAnalysis from './components/content-period-analysis.vue'
+import ContentPublishRatio from './components/content-publish-ratio.vue'
+import PopularAuthor from './components/popular-author.vue'
+
 definePageMeta({
   locale: 'menu.visualization.dataAnalysis',
   requiresAuth: true,
@@ -13,24 +18,24 @@ definePageMeta({
     />
     <a-space direction="vertical" :size="16" fill>
       <div class="space-unit">
-        <VisualPublicOpinion />
+        <PublicOpinion />
       </div>
       <div>
         <a-grid :cols="24" :col-gap="16" :row-gap="16">
           <a-grid-item
             :span="{ xs: 24, sm: 24, md: 24, lg: 24, xl: 16, xxl: 16 }"
           >
-            <VisualContentPublishRatio />
+            <ContentPublishRatio />
           </a-grid-item>
           <a-grid-item
             :span="{ xs: 24, sm: 24, md: 24, lg: 24, xl: 8, xxl: 8 }"
           >
-            <VisualPopularAuthor />
+            <PopularAuthor />
           </a-grid-item>
         </a-grid>
       </div>
       <div>
-        <VisualContentPeriodAnalysis />
+        <ContentPeriodAnalysis />
       </div>
     </a-space>
   </div>

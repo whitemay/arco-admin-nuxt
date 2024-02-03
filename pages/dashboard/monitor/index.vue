@@ -1,4 +1,11 @@
 <script lang="ts" setup>
+import ChatPanel from './components/chat-panel.vue'
+import Studio from './components/studio.vue'
+import DataStatistic from './components/data-statistic.vue'
+import StudioStatus from './components/studio-status.vue'
+import QuickOperation from './components/quick-operation.vue'
+import StudioInformation from './components/studio-information.vue'
+
 definePageMeta({
   locale: 'menu.dashboard.monitor',
   requiresAuth: true,
@@ -11,19 +18,19 @@ definePageMeta({
     <Breadcrumb :items="['menu.dashboard', 'menu.dashboard.monitor']" />
     <div class="layout">
       <div class="layout-left-side">
-        <MonitorChatPanel />
+        <ChatPanel />
       </div>
       <div class="layout-content">
         <a-space :size="16" direction="vertical" fill>
-          <MonitorStudio />
-          <MonitorDataStatistic />
+          <Studio />
+          <DataStatistic />
         </a-space>
       </div>
       <div class="layout-right-side">
         <a-space :size="16" direction="vertical" fill>
-          <MonitorStudioStatus />
-          <MonitorQuickOperation />
-          <MonitorStudioInformation />
+          <StudioStatus />
+          <QuickOperation />
+          <StudioInformation />
         </a-space>
       </div>
     </div>

@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import CardWrap from './card-wrap.vue'
+
 const defaultValue = Array.from<ServiceRecord>({ length: 4 }).fill({} as ServiceRecord)
 const { loading, response: renderData } = useRequest<ServiceRecord[]>(
   queryTheServiceList,

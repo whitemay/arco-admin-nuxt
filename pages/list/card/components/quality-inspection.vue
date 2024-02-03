@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import CardWrap from './card-wrap.vue'
+
 const defaultValue = Array.from<ServiceRecord>({ length: 3 }).fill({} as ServiceRecord)
 const { loading, response: renderData } = useRequest<ServiceRecord[]>(
   queryInspectionList,
@@ -42,7 +44,7 @@ const { loading, response: renderData } = useRequest<ServiceRecord[]>(
         :xl="6"
         :xxl="6"
       >
-        <ListCardWrap
+        <CardWrap
           :loading="loading"
           :title="item.title"
           :description="item.description"
@@ -68,7 +70,7 @@ const { loading, response: renderData } = useRequest<ServiceRecord[]>(
               <a-skeleton-line :widths="['40%']" :rows="1" />
             </a-skeleton>
           </template>
-        </ListCardWrap>
+        </CardWrap>
       </a-col>
     </a-row>
   </div>

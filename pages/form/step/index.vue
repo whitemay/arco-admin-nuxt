@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import BaseInfo from './components/base-info.vue'
+import ChannelInfo from './components/channel-info.vue'
+import Success from './components/success.vue'
+
 definePageMeta({
   locale: 'menu.form.step',
   requiresAuth: true,
@@ -71,9 +75,9 @@ function changeStep(direction: string | number, model: BaseInfoModel | ChannelIn
             </a-step>
           </a-steps>
           <keep-alive>
-            <FormBaseInfo v-if="step === 1" @change-step="changeStep" />
-            <FormChannelInfo v-else-if="step === 2" @change-step="changeStep" />
-            <FormSuccess v-else-if="step === 3" @change-step="changeStep" />
+            <BaseInfo v-if="step === 1" @change-step="changeStep" />
+            <ChannelInfo v-else-if="step === 2" @change-step="changeStep" />
+            <Success v-else-if="step === 3" @change-step="changeStep" />
           </keep-alive>
         </div>
       </a-card>

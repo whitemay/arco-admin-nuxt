@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import QualityInspection from './components/quality-inspection.vue'
+import TheService from './components/the-service.vue'
+import RulesPreset from './components/rules-preset.vue'
+
 definePageMeta({
   locale: 'menu.list.cardList',
   requiresAuth: true,
@@ -16,18 +20,18 @@ definePageMeta({
             <a-col :span="24">
               <a-tabs :default-active-tab="1" type="rounded">
                 <a-tab-pane key="1" :title="$t('cardList.tab.title.all')">
-                  <ListQualityInspection />
-                  <ListService />
-                  <ListRulesPreset />
+                  <QualityInspection />
+                  <TheService />
+                  <RulesPreset />
                 </a-tab-pane>
                 <a-tab-pane key="2" :title="$t('cardList.tab.title.content')">
-                  <ListQualityInspection />
+                  <QualityInspection />
                 </a-tab-pane>
                 <a-tab-pane key="3" :title="$t('cardList.tab.title.service')">
-                  <ListService />
+                  <TheService />
                 </a-tab-pane>
                 <a-tab-pane key="4" :title="$t('cardList.tab.title.preset')">
-                  <ListRulesPreset />
+                  <RulesPreset />
                 </a-tab-pane>
               </a-tabs>
             </a-col>

@@ -2,6 +2,7 @@ import process from 'node:process'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
+import type { NuxtPage } from 'nuxt/schema'
 import { pwa } from './config/pwa'
 import { appDescription, appName } from './config/const'
 
@@ -47,40 +48,6 @@ export default defineNuxtConfig({
     importStyle: 'css', // 目前没有考虑使用less变量，所以直接引入css
     // theme: '@arco-themes/vue-digitforce', // 主题会自动引入整体CSS。如果不使用主题，就需要在CSS段中引入Arco的CSS
   },
-  colorMode: {
-    classSuffix: '',
-  },
-  css: [
-    // '@unocss/reset/tailwind-compat.css', // 怀疑Arco做了，所以不再引入
-    '@arco-design/web-vue/dist/arco.min.css',
-  ],
-  components: {
-    dirs: ['components'],
-  },
-  imports: {
-    dirs: ['stores'],
-    presets: [{
-      from: 'v3hooks',
-      imports: ['useBoolean'],
-    }],
-  },
-  unocss: {
-    components: false,
-    // injectPosition: 'first',
-  },
-
-  experimental: {
-    // when using generate, payload js assets included in sw precache manifest
-    // but missing on offline, disabling extraction it until fixed
-    payloadExtraction: false,
-    renderJsonPayloads: true,
-    typedPages: true,
-  },
-
-  runtimeConfig: {
-    jwt: { secret: process.env.JWT_SECRET || 'dummy_secret' },
-  },
-
   auth: {
     provider: {
       type: 'local',
@@ -108,7 +75,70 @@ export default defineNuxtConfig({
       isEnabled: true,
     },
   },
+  colorMode: {
+    classSuffix: '',
+  },
+  css: [
+    // '@unocss/reset/tailwind-compat.css', // 怀疑Arco做了，所以不再引入
+    '@arco-design/web-vue/dist/arco.min.css',
+  ],
+  components: {
+    dirs: ['components'],
+  },
+  eslintConfig: {
+    setup: false,
+  },
+  pwa,
+  unocss: {
+    components: false,
+    // injectPosition: 'first',
+  },
 
+  build: {
+    transpile: ['jsonwebtoken', /vue-i18n/, /echarts/, 'zrender', 'tslib'],
+  },
+  devtools: {
+    enabled: true,
+
+    timeline: {
+      enabled: true,
+    },
+  },
+  experimental: {
+    // when using generate, payload js assets included in sw precache manifest
+    // but missing on offline, disabling extraction it until fixed
+    payloadExtraction: false,
+    renderJsonPayloads: true,
+    typedPages: true,
+  },
+  features: {
+    // For UnoCSS
+    inlineStyles: false,
+  },
+  hooks: { // 忽略掉ts文件结尾的page router，以及components目录下的文件
+    'pages:extend': function (pages) {
+      // remove routes
+      function removePagesMatching(pattern: RegExp, pages: NuxtPage[] = []) {
+        const pagesToRemove = []
+        for (const page of pages) {
+          if (pattern.test(page.file!))
+            pagesToRemove.push(page)
+          else
+            removePagesMatching(pattern, page.children)
+        }
+        for (const page of pagesToRemove)
+          pages.splice(pages.indexOf(page), 1)
+      }
+      removePagesMatching(/(\/components\/|\.ts$)/, pages)
+    },
+  },
+  imports: {
+    dirs: ['stores'],
+    presets: [{
+      from: 'v3hooks',
+      imports: ['useBoolean'],
+    }],
+  },
   nitro: {
     esbuild: {
       options: {
@@ -121,31 +151,10 @@ export default defineNuxtConfig({
       ignore: ['/hi'],
     },
   },
-
-  pwa,
+  runtimeConfig: {
+    jwt: { secret: process.env.JWT_SECRET || 'dummy_secret' },
+  },
   ssr: false,
-
-  devtools: {
-    enabled: true,
-
-    timeline: {
-      enabled: true,
-    },
-  },
-
-  features: {
-    // For UnoCSS
-    inlineStyles: false,
-  },
-
-  eslintConfig: {
-    setup: false,
-  },
-
-  build: {
-    transpile: ['jsonwebtoken', /vue-i18n/, /echarts/, 'zrender', 'tslib'],
-  },
-
   vite: {
     css: {
       preprocessorOptions: {

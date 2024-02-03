@@ -1,4 +1,9 @@
 <script lang="ts" setup>
+import UserPanel from './components/user-panel.vue'
+import BasicInformation from './components/basic-information.vue'
+import SecuritySettings from './components/security-settings.vue'
+import Certification from './components/certification.vue'
+
 defineOptions({
   name: 'UserSetting',
 })
@@ -21,13 +26,13 @@ definePageMeta({
       <a-col :span="24">
         <a-tabs default-active-key="1" type="rounded">
           <a-tab-pane key="1" :title="$t('userSetting.tab.basicInformation')">
-            <UserBasicInformation />
+            <BasicInformation />
           </a-tab-pane>
           <a-tab-pane key="2" :title="$t('userSetting.tab.securitySettings')">
-            <UserSecuritySettings />
+            <SecuritySettings />
           </a-tab-pane>
           <a-tab-pane key="3" :title="$t('userSetting.tab.certification')">
-            <UserCertification />
+            <Certification />
           </a-tab-pane>
         </a-tabs>
       </a-col>
