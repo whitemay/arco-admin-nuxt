@@ -1,4 +1,4 @@
-export function successResponseWrap(data: unknown): App.ServerResult {
+export function successResponseWrap(data: unknown): ServerResult {
   return {
     data,
     status: 'ok',
@@ -7,7 +7,7 @@ export function successResponseWrap(data: unknown): App.ServerResult {
   }
 }
 
-export function failResponseWrap(data: unknown, msg: string, code = 500): App.ServerResult {
+export function failResponseWrap(data: unknown, msg: string, code = 500): ServerResult {
   return {
     data,
     status: 'fail',

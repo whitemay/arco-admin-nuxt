@@ -6,6 +6,7 @@ export interface TagProps {
   fullPath: string
   query?: any
   ignoreCache?: boolean
+  tabTitle?: string
 }
 
 export interface TabBarState {

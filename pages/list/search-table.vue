@@ -32,7 +32,7 @@ const showColumns = ref<Column[]>([])
 
 const size = ref<SizeProps>('medium')
 
-const basePagination: App.Pagination = {
+const basePagination: Pagination = {
   current: 1,
   pageSize: 20,
 }
@@ -221,7 +221,7 @@ watch(
 </script>
 
 <template>
-  <div class="container">
+  <div class="p-5 pt-0">
     <Breadcrumb :items="['menu.list', 'menu.list.searchTable']" />
     <a-card class="general-card" :title="$t('menu.list.searchTable')">
       <a-row>

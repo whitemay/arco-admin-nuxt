@@ -143,7 +143,7 @@ export default defineNuxtConfig({
   },
 
   build: {
-    transpile: ['jsonwebtoken', /vue-i18n/],
+    transpile: ['jsonwebtoken', /vue-i18n/, /echarts/, 'zrender', 'tslib'],
   },
 
   vite: {
@@ -166,5 +166,17 @@ export default defineNuxtConfig({
         ],
       }),
     ],
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            arco: ['@arco-design/web-vue'],
+            chart: ['echarts', 'vue-echarts'],
+            vue: ['vue', 'vue-router', 'pinia', '@vueuse/core', 'vue-i18n'],
+          },
+        },
+      },
+      chunkSizeWarningLimit: 2000,
+    },
   },
 })

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-function tooltipItemsHtmlString(items: App.ToolTipFormatterParams[]) {
+function tooltipItemsHtmlString(items: ToolTipFormatterParams[]) {
   return items
     .map(
       el => `<div class="content-panel">

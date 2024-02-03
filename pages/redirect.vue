@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 definePageMeta({
+  hidden: true,
+  locale: 'redirect.title',
   noSffix: true,
 })
 const route = useRoute()

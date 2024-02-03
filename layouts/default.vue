@@ -24,7 +24,7 @@ const paddingStyle = computed(() => {
       <GlobalNavBar />
     </a-layout-header>
 
-    <a-layout class="overflow-y-auto">
+    <a-layout class="overflow-y-auto overscroll-x-none">
       <a-layout-sider class="layout-sider">
         <div class="menu-wrapper">
           <GlobalMenu />
@@ -36,15 +36,10 @@ const paddingStyle = computed(() => {
           <GlobalTabBar />
         </a-layout-header>
         <a-layout-content class="overflow-y-auto">
-          <main class="px-10 py-20 text-center">
-            <slot />
-          </main>
+          <slot />
         </a-layout-content>
         <a-layout-footer>
           <Footer />
-        <!-- <div class="mx-auto mt-5 text-center text-sm opacity-25">
-          [Default Layout]
-        </div> -->
         </a-layout-footer>
       </a-layout>
       <!-- 主体部分结束 -->
@@ -101,5 +96,12 @@ const paddingStyle = computed(() => {
       background-color: var(--color-text-3);
     }
   }
+}
+
+.layout-content {
+  // min-height: 100%;
+  overflow-y: hidden;
+  background-color: var(--color-fill-2);
+  transition: padding 0.2s cubic-bezier(0.34, 0.69, 0.1, 1);
 }
 </style>

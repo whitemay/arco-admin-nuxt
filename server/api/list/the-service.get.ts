@@ -1,4 +1,6 @@
-const theServiceList: App.ServiceRecord[] = [
+import Mock from 'mockjs'
+
+const theServiceList: ServiceRecord[] = [
   {
     id: 1,
     icon: 'code',
@@ -42,7 +44,7 @@ export default eventHandler(() => {
   return successResponseWrap(
     theServiceList.map((_, index) => ({
       ...theServiceList[index % theServiceList.length],
-      id: 'random.guid',
+      id: Mock.Random.guid(),
     })),
   )
 })

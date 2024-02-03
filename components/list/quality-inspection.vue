@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const defaultValue: ServiceRecord[] = Array.from({ length: 3 }).fill({})
+const defaultValue = Array.from<ServiceRecord>({ length: 3 }).fill({} as ServiceRecord)
 const { loading, response: renderData } = useRequest<ServiceRecord[]>(
   queryInspectionList,
   defaultValue,
