@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import DataOverview from './components/data-overview.vue'
+import DataChainGrowth from './components/data-chain-growth.vue'
+import UserActions from './components/user-actions.vue'
+import ContentTypeDistribution from './components/content-type-distribution.vue'
+import ContentPublishingSource from './components/content-publishing-source.vue'
+
 definePageMeta({
   locale: 'menu.visualization.multiDimensionDataAnalysis',
   requiresAuth: true,
@@ -19,15 +25,15 @@ definePageMeta({
         <a-grid-item
           :span="{ xs: 24, sm: 24, md: 24, lg: 18, xl: 18, xxl: 18 }"
         >
-          <VisualDataOverview />
+          <DataOverview />
         </a-grid-item>
         <a-grid-item :span="{ xs: 24, sm: 24, md: 24, lg: 6, xl: 6, xxl: 6 }">
-          <VisualUserActions style="margin-bottom: 16px" />
-          <VisualContentTypeDistribution />
+          <UserActions style="margin-bottom: 16px" />
+          <ContentTypeDistribution />
         </a-grid-item>
       </a-grid>
-      <VisualDataChainGrowth />
-      <VisualContentPublishingSource />
+      <DataChainGrowth />
+      <ContentPublishingSource />
     </a-space>
   </div>
 </template>

@@ -4,6 +4,7 @@ import { BarChart, LineChart, PieChart, RadarChart } from 'echarts/charts'
 import { use } from 'echarts/core'
 import { CanvasRenderer } from 'echarts/renderers'
 import {
+  DataZoomComponent,
   GraphicComponent,
   GridComponent,
   LegendComponent,
@@ -29,6 +30,7 @@ const props = withDefaults(defineProps<Props>(), {
 use([
   BarChart,
   CanvasRenderer,
+  DataZoomComponent,
   GraphicComponent,
   GridComponent,
   LegendComponent,

@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import ChainItem from './chain-item.vue'
+
 const { isDark } = useThemes()
 </script>
 
@@ -10,7 +12,7 @@ const { isDark } = useThemes()
   >
     <a-grid :cols="24" :col-gap="12" :row-gap="12">
       <a-grid-item :span="{ xs: 12, sm: 12, md: 12, lg: 12, xl: 6, xxl: 6 }">
-        <VisualChainItem
+        <ChainItem
           :title="$t('dataAnalysis.card.title.allVisitors')"
           quota="visitors"
           chart-type="line"
@@ -22,7 +24,7 @@ const { isDark } = useThemes()
         />
       </a-grid-item>
       <a-grid-item :span="{ xs: 12, sm: 12, md: 12, lg: 12, xl: 6, xxl: 6 }">
-        <VisualChainItem
+        <ChainItem
           :title="$t('dataAnalysis.card.title.contentPublished')"
           quota="published"
           chart-type="bar"
@@ -34,7 +36,7 @@ const { isDark } = useThemes()
         />
       </a-grid-item>
       <a-grid-item :span="{ xs: 12, sm: 12, md: 12, lg: 12, xl: 6, xxl: 6 }">
-        <VisualChainItem
+        <ChainItem
           :title="$t('dataAnalysis.card.title.totalComment')"
           quota="comment"
           chart-type="line"
@@ -46,7 +48,7 @@ const { isDark } = useThemes()
         />
       </a-grid-item>
       <a-grid-item :span="{ xs: 12, sm: 12, md: 12, lg: 12, xl: 6, xxl: 6 }">
-        <VisualChainItem
+        <ChainItem
           :title="$t('dataAnalysis.card.title.totalShare')"
           quota="share"
           chart-type="pie"

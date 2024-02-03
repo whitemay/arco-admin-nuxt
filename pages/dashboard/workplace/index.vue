@@ -1,4 +1,15 @@
 <script setup lang="ts">
+import Banner from './components/banner.vue'
+import DataPanel from './components/data-panel.vue'
+import ContentChart from './components/content-chart.vue'
+import PopularContent from './components/popular-content.vue'
+import CategoriesPercent from './components/categories-percent.vue'
+import RecentlyVisited from './components/recently-visited.vue'
+import QuickOperation from './components/quick-operation.vue'
+import Announcement from './components/announcement.vue'
+import Carousel from './components/carousel.vue'
+import Docs from './components/docs.vue'
+
 definePageMeta({
   locale: 'menu.dashboard.workplace',
 })
@@ -8,20 +19,20 @@ definePageMeta({
   <div class="container">
     <div class="left-side">
       <div class="panel">
-        <DashBanner />
-        <DashDataPanel />
-        <DashContentChart />
+        <Banner />
+        <DataPanel />
+        <ContentChart />
       </div>
       <a-grid :cols="24" :col-gap="16" :row-gap="16" style="margin-top: 16px">
         <a-grid-item
           :span="{ xs: 24, sm: 24, md: 24, lg: 12, xl: 12, xxl: 12 }"
         >
-          <DashPopularContent />
+          <PopularContent />
         </a-grid-item>
         <a-grid-item
           :span="{ xs: 24, sm: 24, md: 24, lg: 12, xl: 12, xxl: 12 }"
         >
-          <DashCategoriesPercent />
+          <CategoriesPercent />
         </a-grid-item>
       </a-grid>
     </div>
@@ -29,18 +40,18 @@ definePageMeta({
       <a-grid :cols="24" :row-gap="16">
         <a-grid-item :span="24">
           <div class="panel moduler-wrap">
-            <DashQuickOperation />
-            <DashRecentlyVisited />
+            <QuickOperation />
+            <RecentlyVisited />
           </div>
         </a-grid-item>
         <a-grid-item class="panel" :span="24">
-          <DashCarousel />
+          <Carousel />
         </a-grid-item>
         <a-grid-item class="panel" :span="24">
-          <DashAnnouncement />
+          <Announcement />
         </a-grid-item>
         <a-grid-item class="panel" :span="24">
-          <DashDocs />
+          <Docs />
         </a-grid-item>
       </a-grid>
     </div>

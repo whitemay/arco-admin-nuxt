@@ -1,15 +1,17 @@
 <script setup lang="ts">
+import { DEFAULT_ROUTE_NAME } from '~/config/router'
+
 definePageMeta({
   hidden: true,
   locale: 'root.title',
-  redirect: { path: '/hi/aston' },
+  redirect: { name: DEFAULT_ROUTE_NAME },
 })
 const online = useOnline()
 </script>
 
 <template>
   <div>
-    <Logos mb-6 />
+    <GlobalLogos mb-6 />
     <Suspense>
       <ClientOnly>
         <PageView v-if="online" />

@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import ProfileItem from './components/profile-item.vue'
+import OperationLog from './components/operation-log.vue'
+
 definePageMeta({
   locale: 'menu.profile.basic',
   requiresAuth: true,
@@ -64,7 +67,18 @@ fetchPreData()
       <a-card class="general-card">
         <ProfileItem :loading="preLoading" type="pre" :render-data="preData" />
       </a-card>
-      <ProfileOperationLog />
+      <OperationLog />
     </a-space>
   </div>
 </template>
+
+<style scoped lang="less">
+  .container {
+  padding: 0 20px 20px 20px;
+}
+
+.steps {
+  max-width: 548px;
+  margin: 0 auto 10px;
+}
+</style>
