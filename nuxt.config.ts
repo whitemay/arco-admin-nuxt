@@ -7,6 +7,7 @@ import { pwa } from './config/pwa'
 import { appDescription, appName } from './config/const'
 
 export default defineNuxtConfig({
+  // @ts-expect-error 类型实例化过深
   modules: [
     '@vueuse/nuxt',
     'nuxt-lodash',
@@ -16,9 +17,8 @@ export default defineNuxtConfig({
     '@pinia-plugin-persistedstate/nuxt',
     'nuxt-icon',
     'arco-design-nuxt-module',
-    // '@vrx-arco/nuxt',
     '@nuxtjs/color-mode',
-    '@sidebase/nuxt-auth',
+    // '@sidebase/nuxt-auth',
     'nuxt-module-eslint-config',
     // '@nuxtjs/eslint-module',
     '@vite-pwa/nuxt',
@@ -63,6 +63,7 @@ export default defineNuxtConfig({
         // signInResponseTokenPointer: '/tokens/accessToken',
         maxAgeInSeconds: 24 * 60 * 60, // 指定cookie有效期为1天。由于目前仅适用cookie里面保存的token，所以这里设置的有效期和JWT的有效期需要匹配。
         sameSiteAttribute: 'lax',
+        storage: 'session', // 自己实现所使用的设置
       },
       /* refreshToken: {
         signInResponseRefreshTokenPointer: '/tokens/refreshToken',

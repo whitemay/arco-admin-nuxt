@@ -1,3 +1,4 @@
+import type { NotificationConfig } from '@arco-design/web-vue'
 import type { CallbackDataParams } from 'echarts/types/dist/shared'
 
 declare global {
@@ -34,7 +35,10 @@ declare global {
   export interface AnyObject {
     [key: string]: unknown
   }
-
+  export interface NotifyOption {
+    type: 'success' | 'info' | 'warning' | 'error'
+    config: NotificationConfig | string
+  }
 }
 
 // export = Pro

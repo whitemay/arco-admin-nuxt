@@ -7,7 +7,7 @@ const runtimeConfig = useRuntimeConfig()
 function extractToken(event: H3Event) {
   const authHeaderValue = getRequestHeader(event, 'authorization')
   if (typeof authHeaderValue === 'undefined')
-    throw createError({ statusCode: 403, statusMessage: '要求提供认证头' })
+    throw createError({ statusCode: 401, statusMessage: '要求提供认证头' })
   const [, token] = authHeaderValue.split(`${TOKEN_TYPE} `)
   return token
 }
@@ -19,7 +19,7 @@ export function ensureAuth(event: H3Event) {
   }
   catch (error) {
     console.error('校验失败，错误信息如下:', error)
-    throw createError({ statusCode: 403, statusMessage: 'You must be logged in to use this endpoint' })
+    throw createError({ statusCode: 401, statusMessage: 'You must be logged in to use this endpoint' })
   }
 }
 
