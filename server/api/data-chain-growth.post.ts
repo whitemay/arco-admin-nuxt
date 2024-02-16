@@ -1,4 +1,4 @@
-import random from 'random'
+import Mock from 'mockjs'
 
 export default eventHandler(async (event) => {
   const body = await readBody(event)
@@ -10,13 +10,13 @@ export default eventHandler(async (event) => {
         name: quota,
         value: Array.from({ length: 12 })
           .fill(0)
-          .map(() => random.int(1000, 3000)),
+          .map(() => Mock.Random.integer(1000, 3000)),
       },
     }
   }
   return successResponseWrap({
-    count: random.int(1000, 3000),
-    growth: random.int(2000, 10000) / 100,
+    count: Mock.Random.integer(1000, 3000),
+    growth: Mock.Random.integer(2000, 10000) / 100,
     chartData: getLineData(),
   })
 })
