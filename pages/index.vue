@@ -5,6 +5,7 @@ definePageMeta({
   hidden: true,
   locale: 'root.title',
   redirect: { name: DEFAULT_ROUTE_NAME },
+  noAffix: true,
 })
 const online = useOnline()
 </script>

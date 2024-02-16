@@ -35,7 +35,7 @@ interface GlobalMiddlewareOptions {
   addDefaultCallbackUrl?: boolean | string
 }
 
-/* type DataObjectPrimitives =
+type DataObjectPrimitives =
   | 'string'
   | 'number'
   | 'boolean'
@@ -50,7 +50,7 @@ export interface SessionDataObject {
   [key: string]:
     | Omit<string, DataObjectPrimitives | DataObjectArray>
     | SessionDataObject
-} */
+}
 
 /**
  * Available `nuxt-auth` authentication providers.
@@ -168,7 +168,7 @@ export interface ProviderLocal {
    * @example { id: 'string', name: 'string', email: 'string' }
    * @advanced_array_example { id: 'string', email: 'string', name: 'string', role: 'admin | guest | account', subscriptions: "{ id: number, status: 'ACTIVE' | 'INACTIVE' }[]" }
    */
-  // sessionDataType?: SessionDataObject
+  sessionDataType?: SessionDataObject
 }
 
 /**

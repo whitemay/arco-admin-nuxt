@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import type { Container } from 'tsparticles-engine'
 
-const { signIn, token, data, status, lastRefreshedAt, getSession, signUp, signOut } = useAuth()
-const appConfig = useAppConfig()
+const { signIn, token, data, status, lastRefreshedAt } = useAuth()
 
 const username = ref('jsmith')
 const password = ref('hunter2')
@@ -13,10 +12,11 @@ definePageMeta({
     unauthenticatedOnly: true,
     navigateAuthenticatedTo: '/',
   },
+  noAffix: true,
 })
 
 async function login() {
-  await signIn({ username: username.value, password: password.value }, { callbackUrl: '/' })
+  await signIn({ username: username.value, password: password.value }, { callbackUrl: '/', external: false })
 }
 
 updateAppConfig({ title: 'Login' })
@@ -111,7 +111,8 @@ const options = {
     },
   },
   detectRetina: true,
-}
+} as any
+
 function onLoad(container: Container) {
   // Do something with the container
   container.pause()
