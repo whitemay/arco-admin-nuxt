@@ -10,6 +10,7 @@ export default defineNuxtConfig({
   modules: [
     '@vueuse/nuxt',
     'nuxt-lodash',
+    'dayjs-nuxt',
     '@unocss/nuxt',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
