@@ -1,8 +1,17 @@
 <script setup lang="ts">
-import type { RouteRecordRaw } from '#vue-router'
-
+// 构造本组件需要的数据类型定义
+interface Meta {
+  icon?: string
+  locale?: string
+}
+interface RouteRecordItem {
+  path: string
+  name: string
+  children?: RouteRecordItem[]
+  meta?: Meta
+}
 interface Props {
-  items: RouteRecordRaw[]
+  items: RouteRecordItem[]
 }
 
 const props = withDefaults(defineProps<Props>(), { items: () => [] })
@@ -10,7 +19,7 @@ const props = withDefaults(defineProps<Props>(), { items: () => [] })
 
 <template>
   <template v-for="item in props.items">
-    <a-sub-menu v-if="item.children && item.children.length !== 0" :key="(item.name as string)">
+    <a-sub-menu v-if="item.children && item.children.length !== 0" :key="item.name">
       <template v-if="item.meta?.icon" #icon>
         <icon :name="item.meta.icon" />
       </template>
