@@ -1,11 +1,11 @@
-import random from 'random'
+import Mock from 'mockjs'
 
 export default eventHandler(() => {
   const generateLineData = (name: string) => {
     return {
       name,
-      count: random.int(20, 2000),
-      value: Array.from({ length: 8 }).fill(0).map(() => random.int(800, 4000)),
+      count: Mock.Random.integer(20, 2000),
+      value: Array.from({ length: 8 }).fill(0).map(() => Mock.Random.integer(800, 4000)),
     }
   }
   const xAxis = Array.from({ length: 8 }).fill(0).map((_item, index) => {

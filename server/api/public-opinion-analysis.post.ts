@@ -1,4 +1,4 @@
-import random from 'random'
+import Mock from 'mockjs'
 
 export default eventHandler(async (event) => {
   const body = await readBody(event)
@@ -8,7 +8,7 @@ export default eventHandler(async (event) => {
     const getLineData = (name: number) => {
       return Array.from({ length: 12 }).fill(0).map((_item, index) => ({
         x: `${index + 1}月`,
-        y: random.int(0, 100),
+        y: Mock.Random.integer(0, 100),
         name: String(name),
       }))
     }
@@ -23,7 +23,7 @@ export default eventHandler(async (event) => {
     const getLineData = (name: number) => {
       return Array.from({ length: 12 }).fill(0).map((_item, index) => ({
         x: `${index + 1}日`,
-        y: random.int(20, 100),
+        y: Mock.Random.integer(20, 100),
         name: String(name),
       }))
     }

@@ -10,6 +10,7 @@ export default defineNuxtConfig({
   modules: [
     '@vueuse/nuxt',
     'nuxt-lodash',
+    'dayjs-nuxt',
     '@unocss/nuxt',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
@@ -60,15 +61,15 @@ export default defineNuxtConfig({
       },
       token: {
         // signInResponseTokenPointer: '/tokens/accessToken',
-        maxAgeInSeconds: 60 * 5, // 5 min
+        maxAgeInSeconds: 24 * 60 * 60, // 指定cookie有效期为1天。由于目前仅适用cookie里面保存的token，所以这里设置的有效期和JWT的有效期需要匹配。
         sameSiteAttribute: 'lax',
       },
       /* refreshToken: {
         signInResponseRefreshTokenPointer: '/tokens/refreshToken',
       }, */
     },
-    session: {
-      enableRefreshPeriodically: 3600 * 1000, // 1 hour
+    session: { // 这里看起来是多久自动更新一次用户信息
+      enableRefreshPeriodically: 60 * 60 * 1000, // 1 hour
       enableRefreshOnWindowFocus: false,
     },
     globalAppMiddleware: {

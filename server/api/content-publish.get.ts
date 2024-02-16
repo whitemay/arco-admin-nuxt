@@ -1,4 +1,4 @@
-import random from 'random'
+import Mock from 'mockjs'
 
 export default eventHandler(() => {
   const generateLineData = (name: string) => {
@@ -9,7 +9,7 @@ export default eventHandler(() => {
     }
     Array.from({ length: 12 }).fill(0).forEach((_item, index) => {
       result.x.push(`${index * 2}:00`)
-      result.y.push(random.int(1000, 3000))
+      result.y.push(Mock.Random.integer(1000, 3000))
     })
     return result
   }

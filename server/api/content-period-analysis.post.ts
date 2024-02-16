@@ -1,10 +1,10 @@
-import random from 'random'
+import Mock from 'mockjs'
 
 export default eventHandler(() => {
   const getLineData = (name: string) => {
     return {
       name,
-      value: Array.from({ length: 12 }).fill(0).map(() => random.int(30, 90)),
+      value: Array.from({ length: 12 }).fill(0).map(() => Mock.Random.integer(30, 90)),
     }
   }
   return successResponseWrap({
