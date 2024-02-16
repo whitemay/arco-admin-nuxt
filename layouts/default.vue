@@ -25,7 +25,7 @@ const paddingStyle = computed(() => {
     </a-layout-header>
 
     <a-layout class="overflow-y-auto overscroll-x-none">
-      <a-layout-sider class="layout-sider">
+      <a-layout-sider class="layout-sider" :width="menuWidth">
         <div class="menu-wrapper">
           <GlobalMenu />
         </div>

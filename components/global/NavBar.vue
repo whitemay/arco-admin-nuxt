@@ -23,6 +23,7 @@ const isDark = useDark({
   },
 })
 const toggleTheme = useToggle(isDark)
+const menuCollapse = computed(() => appStore.menuCollapse)
 
 function handleToggleTheme() {
   toggleTheme()
@@ -51,20 +52,33 @@ function setDropDownVisible() {
   })
   triggerBtn.value.dispatchEvent(event)
 }
-function toggleDrawerMenu() {}
+function toggleDrawerMenu() {
+  if (appStore.device === 'desktop')
+    appStore.updateSettings({ menuCollapse: !menuCollapse.value })
+}
 </script>
 
 <template>
   <div class="navbar">
-    <div class="h-full w-200px overflow-hidden">
+    <div
+      class="h-full flex flex-row overflow-hidden" :class="{
+        'w-12': menuCollapse,
+        'justify-start': menuCollapse,
+        'w-200px': !menuCollapse,
+        'justify-center': !menuCollapse,
+      }"
+    >
       <GlobalLogos />
     </div>
     <div class="left-side">
       <a-space>
-        <icon-menu-fold
+        <span
           style="font-size: 22px; cursor: pointer"
-          @click="toggleDrawerMenu"
-        />
+          @click.stop="toggleDrawerMenu"
+        >
+          <icon-menu-unfold v-if="menuCollapse" />
+          <icon-menu-fold v-else />
+        </span>
         <img
           alt="logo"
           src="//p3-armor.byteimg.com/tos-cn-i-49unhts6dw/dfdba5317c0c20ce20e64fac803d52bc.svg~tplv-49unhts6dw-image.image"
