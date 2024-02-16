@@ -154,6 +154,11 @@ export default defineNuxtConfig({
   runtimeConfig: {
     jwt: { secret: process.env.JWT_SECRET || 'dummy_secret' },
   },
+  sourcemap: {
+    // 是否生成 sourcemaps。
+    server: true,
+    client: false,
+  },
   ssr: false,
   vite: {
     css: {

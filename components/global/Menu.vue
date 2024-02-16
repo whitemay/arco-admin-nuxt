@@ -1,10 +1,20 @@
 <script setup lang="ts">
 import type { RouteRecordRaw } from '#vue-router'
 
-const collapsed = ref(false)
 const openKeys = ref<string[]>([])
 const selectedKey = ref<string[]>([])
 const appStore = useAppStore()
+
+const collapsed = computed({
+  get() {
+    if (appStore.device === 'desktop')
+      return appStore.menuCollapse
+    return false
+  },
+  set(value: boolean) {
+    appStore.updateSettings({ menuCollapse: value })
+  },
+})
 const topMenu = computed(() => appStore.topMenu)
 
 await appStore.fetchServerMenuConfig()
