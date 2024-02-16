@@ -1,18 +1,18 @@
 import type { Ref } from 'vue'
-import { callWithNuxt } from 'nuxt/dist/app/nuxt'
 import { jsonPointerGet, useTypedBackendConfig } from '../../helpers'
 import { useAuth as useLocalAuth } from '../local/useAuth'
 import { _fetch } from '../../utils/fetch'
 import { getRequestURLWN } from '../../utils/callWithNuxt'
 import type { SignOutFunc } from '../../types'
+import { useAuthState } from './useAuthState'
+import { callWithNuxt } from '#app/nuxt'
 import {
   navigateTo,
   nextTick,
   readonly,
   useNuxtApp,
   useRuntimeConfig,
-} from '../../../../../.nuxt/imports'
-import { useAuthState } from './useAuthState'
+} from '#imports'
 
 const signIn: ReturnType<typeof useLocalAuth>['signIn'] = async (
   credentials,

@@ -4,9 +4,7 @@ import { useStorage } from '@vueuse/core'
 import { useTypedBackendConfig } from '../../helpers'
 import { useAuthState as useLocalAuthState } from '../local/useAuthState'
 
-import { useRuntimeConfig, useState } from '../../../../../.nuxt/imports'
-
-// '#imports'
+import { useRuntimeConfig, useState } from '#imports'
 
 type UseAuthStateReturn = ReturnType<typeof useLocalAuthState> & {
   rawRefreshToken: Ref<string | null>
