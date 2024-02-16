@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>Arco Design Pro</h1>
+  <h1>Arco Design Pro for Nuxt3</h1>
 </div>
 
 <div align="center">
@@ -18,8 +18,6 @@ Admin 中后台管理页面，创新的多架构方案。
 
 </div>
 
-![f769c408-adf4-4a85-b4a5-cc0d7e7f29ef](https://user-images.githubusercontent.com/19399269/148364725-b7a36383-04a9-4d67-87a4-91e970d0d083.gif)
-
 ## ✨ Features
 
 - **TypeScript** - 代码完全使用 TypeScript 书写。
@@ -33,25 +31,22 @@ Admin 中后台管理页面，创新的多架构方案。
 - **I18n** - 内置国际化多语言解决方案。
 - **Config** - 灵活配置页面配色、布局等。
 
-## 🌈 Usage
+## 🌈 使用方式
+
+采用下面的命令启动开发服务。其它命令请参考node文档。
 
 ```bash
-$ npm i arco-cli@latest yarn -g
+$ npm install
 
-$ arco init my-project
+$ npm run dev
 ```
+
+资深的开发人员，推荐采用bunjs作为node平台的替代方案。在以上命令中用bun代替npm即可。
 
 ## 🔗 Link
 
 - [Arco Design Pro 官网](https://pro.arco.design)
-- [预览](https://vue-pro.arco.design)
-
-## 💎 Changelog
-
-- [中文版](https://github.com/arco-design/arco-design-pro-vue/blob/main/docs/changelog.zh-CN.md)
-
-- [英文版](https://github.com/arco-design/arco-design-pro-vue/blob/main/docs/changelog.md)
 
 ## LICENSE
 
-[MIT](./LICENSE) © [ArcoDesign](https://arco.design)
+[MIT](./LICENSE)
