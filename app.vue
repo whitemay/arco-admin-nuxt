@@ -19,6 +19,7 @@ useNotifySubscribe(showMessage)
 </script>
 
 <template>
+  <VitePwaManifest />
   <a-config-provider>
     <NuxtLayout>
       <NuxtPage />

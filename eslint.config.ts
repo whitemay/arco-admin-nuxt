@@ -7,4 +7,9 @@ export default antfu(
     formatters: true,
   },
   nuxt,
+  {
+    rules: {
+      'node/prefer-global/process': 'off',
+    },
+  },
 )

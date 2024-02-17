@@ -1,4 +1,4 @@
-import { Message, Modal } from '@arco-design/web-vue'
+/* import { Message, Modal } from '@arco-design/web-vue'
 import { useUserStore } from '@/store'
 import { getToken } from '@/utils/auth'
 
@@ -71,4 +71,4 @@ axios.interceptors.response.use(
     })
     return Promise.reject(error)
   },
-)
+) */

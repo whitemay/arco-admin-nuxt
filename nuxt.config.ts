@@ -1,4 +1,3 @@
-import process from 'node:process'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
@@ -88,7 +87,7 @@ export default defineNuxtConfig({
     dirs: ['components'],
   },
   eslintConfig: {
-    setup: false,
+    setup: true,
   },
   pwa,
   unocss: {
