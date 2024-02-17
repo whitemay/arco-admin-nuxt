@@ -4,7 +4,8 @@ const appStore = useAppStore()
 const navbarHeight = `60px`
 const navbar = computed(() => appStore.navbar)
 const renderMenu = computed(() => appStore.menu && !appStore.topMenu)
-const hideMenu = computed(() => appStore.hideMenu)
+const showMenu = computed(() => appStore.menu)
+const footer = computed(() => appStore.footer)
 const menuWidth = computed(() => {
   return appStore.menuCollapse ? 48 : appStore.menuWidth
 })
@@ -25,7 +26,7 @@ const paddingStyle = computed(() => {
     </a-layout-header>
 
     <a-layout class="overflow-y-auto overscroll-x-none">
-      <a-layout-sider class="layout-sider" :width="menuWidth">
+      <a-layout-sider v-if="showMenu" class="layout-sider" :width="menuWidth">
         <div class="menu-wrapper">
           <GlobalMenu />
         </div>
@@ -38,7 +39,7 @@ const paddingStyle = computed(() => {
         <a-layout-content class="overflow-y-auto">
           <slot />
         </a-layout-content>
-        <a-layout-footer>
+        <a-layout-footer v-if="footer">
           <GlobalFooter />
         </a-layout-footer>
       </a-layout>

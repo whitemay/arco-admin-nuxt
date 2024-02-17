@@ -1,8 +1,11 @@
 <script lang="ts" setup>
 // import { Message } from '@arco-design/web-vue'
+import { LOCALE_OPTIONS } from '@/locales'
 
 const appStore = useAppStore()
 const { signOut, data } = useAuth()
+const { changeLocale, currentLocale } = useLocale()
+const locales = [...LOCALE_OPTIONS]
 const { isFullscreen, toggle: toggleFullScreen } = useFullscreen()
 const avatar = computed(() => {
   return data.value?.avatar || ''
@@ -31,26 +34,8 @@ function handleToggleTheme() {
 function setVisible() {
   appStore.updateSettings({ globalSettings: true })
 }
-const refBtn = ref()
-const triggerBtn = ref()
-function setPopoverVisible() {
-  const event = new MouseEvent('click', {
-    view: window,
-    bubbles: true,
-    cancelable: true,
-  })
-  refBtn.value.dispatchEvent(event)
-}
 async function handleLogout() {
   await signOut({ callbackUrl: '/login', external: false })
-}
-function setDropDownVisible() {
-  const event = new MouseEvent('click', {
-    view: window,
-    bubbles: true,
-    cancelable: true,
-  })
-  triggerBtn.value.dispatchEvent(event)
 }
 function toggleDrawerMenu() {
   if (appStore.device === 'desktop')
@@ -61,7 +46,9 @@ function toggleDrawerMenu() {
 <template>
   <div class="navbar">
     <div
-      class="h-full flex flex-row overflow-hidden" :class="{
+      v-if="appStore.menu"
+      class="h-full flex flex-row overflow-hidden"
+      :class="{
         'w-12': menuCollapse,
         'justify-start': menuCollapse,
         'w-200px': !menuCollapse,
@@ -73,6 +60,7 @@ function toggleDrawerMenu() {
     <div class="left-side">
       <a-space>
         <span
+          v-if="appStore.menu"
           style="font-size: 22px; cursor: pointer"
           @click.stop="toggleDrawerMenu"
         >
@@ -96,7 +84,7 @@ function toggleDrawerMenu() {
     </div>
     <ul class="right-side">
       <li>
-        <a-tooltip content="搜索">
+        <a-tooltip content="$t('settings.search')">
           <a-button class="nav-btn" type="outline" shape="circle">
             <template #icon>
               <icon-search />
@@ -105,11 +93,38 @@ function toggleDrawerMenu() {
         </a-tooltip>
       </li>
       <li>
+        <a-dropdown trigger="click" @select="changeLocale as any">
+          <a-tooltip :content="$t('settings.language')">
+            <a-button
+              class="nav-btn"
+              type="outline"
+              shape="circle"
+            >
+              <template #icon>
+                <icon-language />
+              </template>
+            </a-button>
+          </a-tooltip>
+          <template #content>
+            <a-doption
+              v-for="item in locales"
+              :key="item.value"
+              :value="item.value"
+            >
+              <template #icon>
+                <icon-check v-show="item.value === currentLocale" />
+              </template>
+              {{ item.label }}
+            </a-doption>
+          </template>
+        </a-dropdown>
+      </li>
+      <li>
         <a-tooltip
           :content="
             theme === 'light'
-              ? '点击切换为暗黑模式'
-              : '点击切换为亮色模式'
+              ? $t('settings.navbar.theme.toDark')
+              : $t('settings.navbar.theme.toLight')
           "
         >
           <a-button
@@ -234,14 +249,6 @@ function toggleDrawerMenu() {
     border-color: rgb(var(--gray-2));
     color: rgb(var(--gray-8));
     font-size: 16px;
-  }
-  .trigger-btn,
-  .ref-btn {
-    position: absolute;
-    bottom: 14px;
-  }
-  .trigger-btn {
-    margin-left: 14px;
   }
 }
 </style>

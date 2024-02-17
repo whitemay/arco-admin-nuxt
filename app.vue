@@ -23,6 +23,7 @@ useNotifySubscribe(showMessage)
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
+    <global-setting />
   </a-config-provider>
 </template>
 
