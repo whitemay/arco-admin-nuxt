@@ -6,7 +6,7 @@ export function useNotify(option: NotifyOption) {
   subject.next(option)
 }
 
-export function useNotifySubscribe(
+export function useSubscribeNotify(
   handler: (option: NotifyOption) => void,
 ) {
   const subscription = subject.subscribe(handler)

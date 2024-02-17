@@ -1,4 +1,4 @@
-import type { NotificationConfig } from '@arco-design/web-vue'
+import type { MessageConfig, NotificationConfi } from '@arco-design/web-vue'
 import type { CallbackDataParams } from 'echarts/types/dist/shared'
 
 declare global {
@@ -38,6 +38,10 @@ declare global {
   export interface NotifyOption {
     type: 'success' | 'info' | 'warning' | 'error'
     config: NotificationConfig | string
+  }
+  export interface MessageOption {
+    type: 'info' | 'success' | 'warning' | 'error' | 'loading' | 'normal'
+    config: MessageConfig | stringConfig
   }
 }
 
